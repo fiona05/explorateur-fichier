@@ -1,3 +1,50 @@
+<?php
+//créer une fonction qui, quand on l'appel avec un nom de dossier (qui sera mit dans $name), génère une liste
+//de tous les dossiers et sous dossier et leurs contenue;
+function list_directory($name, $level=0){
+
+    //ouvre dossier avec opendir (position '.' = ici) et donne contenue a $directory (retourne pas 'false' si c'est fait
+    //ce qui active le if)...
+    if ($directory = opendir($name)) {
+
+        //'\n' = fin de ligne;
+        // echo "Pointeur: ".$directory."<br>\n";
+        //getcwd() (ou "get curren working directory") donne chemin du dossier actuel
+        echo "Chemin: ".getcwd()."<br>\n";
+
+        //tant qu'il y a des éléments dans le dossier (lu avec 'readdir'), associe $file au fichier lu et fait en un echo
+        //readdir() retourne le nom de la prochaine entrée du dossier identifié par dir_handle.
+        // Les entrées sont retournées dans l'ordre dans lequel elles sont enregistrées dans le système de fichiers.
+        while($file = readdir($directory)) {
+            
+            //boucle qui crééra un espace (echo "&nbsp;") 4 * par niveau de profondeur
+            for($i = 1; $i < (4 * $level); $i++){
+                echo "&nbsp;";
+            }
+            echo "$file<br>\n";
+
+          //verifie si $file est un dossier (is_dir) et si $file est un dossier "." ou ".."
+          //in_array est une fonction qui verif si le premier est contenue dans le tableau du second
+          //dans ce cas précis, un tableau/array est créé (avec 'array()' directement dans la fonction in_array)
+          if(is_dir($file) && !in_array($file, array(".", "..", ".git"))){
+              //refait l'affichage de ce qui est contenue dans le dossier $file et rajoute +1 au niveau
+              //de profondeur pour les espaces
+              list_directory($file, $level+1);
+          }
+        }
+
+        //ferme le fichier en cours d'etre lu (il est préférable de fermer des choses ouverte avec opendir)
+        //"Ferme le ->pointeur<- sur le dossier"
+        closedir($directory);
+      }
+}
+
+//active fonction et dit a la fonction de commencer au dossier actuel (avec ".");
+list_directory(".");
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
