@@ -31,22 +31,35 @@
 
         <title>explorateur-fichier</title>
 </head>
-<body>
-    <!-- Sacha section-->
-    <!-- Fiona section-->
-    <!-- Franck section-->
-    <!-- Fayçal section-->
-    <header>
 
+<body>
+    <header>
+        <div class="container-fluid"> <!--TROUVER UN BACKGROUND -->
+            <div class="container"> <!--TROUVER UN BACKGROUND -->
+                <div class="row flex-column justify-content-start">
+                    <p><img src="" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
+                    <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
+       <div class="conyainer-fluid">
+           <div class="container">
+                <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
+                    <p class="text-uppercase font-weight-bold">fichiers:</p> 
+                </div>
+                <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
+                    <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
+                    </div>
+                    <div class="col-8">   <!--TROUVER UN BACKGROUND -->
+                    </div>
+                </div>
 
+            </div>
+        </div>
     </main>
-
-    <footer>
-
-    </footer>
     
     <script src="js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
