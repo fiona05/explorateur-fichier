@@ -57,8 +57,8 @@ function list_directory($name, $level=0){
 //active fonction et dit a la fonction de commencer au dossier actuel (avec ".");
 // list_directory(".");
 
-function list_file($dir){
-    $current_dir_location = getcwd();
+function list_file($dir = "."){
+    $current_dir_location = $dir;
     // print_r($current_dir_location);
     // echo 'Voici quelques informations de débogage :';
     $dir_contents = scandir($current_dir_location);
@@ -69,16 +69,23 @@ function list_file($dir){
         $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
         // var_dump($fileExtention);
         if($fileExtention == "txt"){
-            echo "<p>cette ligne contient : <a href='".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";
+            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
+            echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            
         }
         elseif($fileExtention == "php"){
-            echo "<p>cette ligne contient : <a href='".$value."'>".$value."</a>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";
+            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
+            echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a>";
         }
         else{
-        echo "<p>cette ligne contient : <a href='".$value."'>".$value."</a>
-        <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";
+        /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+        <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+        echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a>";
         }
     }
 }
@@ -135,14 +142,14 @@ function list_file($dir){
        <div class="conyainer-fluid">
            <div class="container">
                 <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".getcwd()."<br>\n"; ?></p> 
+                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
                     <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
-                        <?php list_directory($currentDir); ?>
+                        <?php list_file(); ?>
                     </div>
                     <div class="col-8">   <!--TROUVER UN BACKGROUND -->
-                        
+                        <?php list_file($currentDir); ?>
                     </div>
                 </div>
 
