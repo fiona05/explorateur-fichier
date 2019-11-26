@@ -1,4 +1,4 @@
-var TIME_RELOAD=1000;
+qvar TIME_RELOAD=1000;
 
 function display_(file)
 {

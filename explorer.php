@@ -26,7 +26,7 @@ if(!isset($_GET['rename'])&&!isset($_GET['pathren'])&&!isset($_GET['en'])&&!isse
 !isset($_GET['delete'])&&!isset($_GET['path'])&&!isset($_GET['dir'])&&!isset($_FILES['fichier'])&&!isset($_GET['mkdir'])&&!isset
 ($_GET['pathmkdir']))
 {
-	header('location:?dir='.$DEFAULT);
+	header('location:?dir='.$DEFAULT);à)
 }
 
 if(isset($_GET['upload'])&&isset($_POST)&&!file_exists($_POST['pathupload'].$_FILES['fichier']['name']))
