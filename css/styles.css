@@ -2,7 +2,7 @@
 
 div.col-8 div{
     display: flex;
-    width: 120px;
+    width: 150px;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
@@ -12,4 +12,9 @@ div.col-8 div{
 
 div.col-8 div p{
     font-size: 12px;
+    text-align: center;
+}
+
+.icon-size{
+    width: 40px;
 }
