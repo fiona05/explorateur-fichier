@@ -45,18 +45,18 @@
     </header>
 
     <main>
-       <div class="container-fluid  ">
+       <div class="container-fluid gris  ">
            <div class="container ">
                 <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
                     <p class="text-uppercase font-weight-bold">dosssier:</p> 
                 </div>
-                <div class="row" >         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4"> 
+                <div class="row " >         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
+                    <div class="col-4 "> 
                     <p><img src="img/icon-dossier.png" alt="icon-dossier">rootprojet</p>  
             
                            <!--TROUVER UN BACKGROUND COULEUR-->
                     </div>
-                    <div class="col-8 gris">   <!--TROUVER UN BACKGROUND -->
+                    <div class="col-8 ">   <!--TROUVER UN BACKGROUND -->
                     <p><img src="img/icon-dossier.png" alt="icon-dossier">css</p>
                     <p><img src="img/icon-dossier.png" alt="icon-dossier">img</p>
                     <p><img src="img/icon-dossier.png" alt="icon-dossier">js</p>
