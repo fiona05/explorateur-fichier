@@ -1,3 +1,97 @@
+<?php
+// print_r($_GET["file"]);
+if(!$_GET["file"]){
+    echo "it's empty"."<br>";
+    $currentDir = ".";
+    echo getcwd()."/".$currentDir;
+    $currentDirPath = getcwd()."/".$currentDir;
+}
+else{
+    echo "it contains : ".$_GET["file"]."<br>";
+    $currentDir = $_GET["file"];
+    echo getcwd()."/".$currentDir;
+    $currentDirPath = getcwd()."/".$currentDir;
+}
+//créer une fonction qui, quand on l'appel avec un nom de dossier (qui sera mit dans $name), génère une liste
+//de tous les dossiers et sous dossier et leurs contenue;
+function list_directory($name, $level=0){
+
+    //ouvre dossier avec opendir (position '.' = ici) et donne contenue a $directory (retourne pas 'false' si c'est fait
+    //ce qui active le if)...
+    if ($directory = opendir($name)) {
+
+        //'\n' = fin de ligne;
+        // echo "Pointeur: ".$directory."<br>\n";
+        //getcwd() (ou "get curren working directory") donne chemin du dossier actuel
+        // echo "Chemin: ".getcwd()."<br>\n";
+
+        //tant qu'il y a des éléments dans le dossier (lu avec 'readdir'), associe $file au fichier lu et fait en un echo
+        //readdir() retourne le nom de la prochaine entrée du dossier identifié par dir_handle.
+        // Les entrées sont retournées dans l'ordre dans lequel elles sont enregistrées dans le système de fichiers.
+        while($file = readdir($directory)) {
+            $tempSpace = "&nbsp;";
+            //boucle qui crééra un espace (echo "&nbsp;") 4 * par niveau de profondeur
+            for($i = 1; $i < (6 * $level); $i++){
+                // echo "&nbsp;";
+                $tempSpace .= "&nbsp;";
+            }
+            // echo "<div><a href='index.php?file=".$file."'>".$tempSpace.$file."</div><br>\n";
+
+          //verifie si $file est un dossier (is_dir) et si $file est un dossier "." ou ".."
+          //in_array est une fonction qui verif si le premier est contenue dans le tableau du second
+          //dans ce cas précis, un tableau/array est créé (avec 'array()' directement dans la fonction in_array)
+          if(is_dir($file) && !in_array($file, array(".", "..", ".git"))){
+              echo "<p><a href='index.php?file=".$file."'>".$tempSpace.$file."</p><br>\n";
+              //refait l'affichage de ce qui est contenue dans le dossier $file et rajoute +1 au niveau
+              //de profondeur pour les espaces
+              list_directory($file, $level+1);
+          }
+        }
+
+        //ferme le fichier en cours d'etre lu (il est préférable de fermer des choses ouverte avec opendir)
+        //"Ferme le ->pointeur<- sur le dossier"
+        closedir($directory);
+      }
+}
+
+//active fonction et dit a la fonction de commencer au dossier actuel (avec ".");
+// list_directory(".");
+
+function list_file($dir = "."){
+    $current_dir_location = $dir;
+    // print_r($current_dir_location);
+    // echo 'Voici quelques informations de débogage :';
+    $dir_contents = scandir($current_dir_location);
+    // print_r($dir_contents);
+    // print_r(error_get_last());
+
+    foreach($dir_contents as $value){
+        $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
+        // var_dump($fileExtention);
+        if($fileExtention == "txt"){
+            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
+            echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            
+        }
+        elseif($fileExtention == "php"){
+            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
+            echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+        }
+        else{
+        /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+        <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+        echo "<p><a href='index.php?file=".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,12 +165,14 @@
        <div class="conyainer-fluid">
            <div class="container">
                 <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold">fichiers:</p> 
+                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
                     <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
+                        <?php list_file(); ?>
                     </div>
                     <div class="col-8">   <!--TROUVER UN BACKGROUND -->
+                        <?php list_file($currentDir); ?>
                     </div>
                 </div>
 
