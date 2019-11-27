@@ -45,32 +45,34 @@ function init_base_list($dir = "."){
         if (in_array($value, array(".", ".."))){
             continue;
         }
-        elseif($fileExtention == "txt"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' class='icon-size'></p><p>".$value."</p></a>";
-            
-        }
-        elseif($fileExtention == "php"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' class='icon-size'></p><p>".$value."</p></a>";
-        }
         elseif(is_dir($value) || $fileExtention == ""){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
-        echo "<p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a>";
+        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
-        else {
+        else{
+            $mediasFolderContent = scandir("medias");
+            // print_r($mediasFolderContent);
+            $imgPath = $fileExtention."-file.png";
+            // echo "is ".$imgPath." file";
+            $bool = in_array($imgPath, $mediasFolderContent);
+            // print_r($bool);
+            if(in_array($imgPath, $mediasFolderContent)){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
+            else {
+                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+                echo "<div><p><a href='index.php?file=".$value."'>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            }
+            
+        }
     }
 }
 
@@ -87,23 +89,11 @@ function list_file($dir = "."){
     foreach($dir_contents as $value){
         $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
         // var_dump($fileExtention);
-        // var_dump(is_dir($value));
+        // var_dump($value);
+        // var_dump(is_file($value));
 
         if (in_array($value, array(".", ".."))){
             continue;
-        }
-        elseif($fileExtention == "txt"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' class='icon-size'></p><p>".$value."</p></a></div>";
-            
-        }
-        elseif($fileExtention == "php"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
-            echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
         elseif(is_dir($value) || $fileExtention == ""){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
@@ -112,12 +102,27 @@ function list_file($dir = "."){
         echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
             <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
-        else {
+        else{
+            $mediasFolderContent = scandir("medias");
+            // print_r($mediasFolderContent);
+            $imgPath = $fileExtention."-file.png";
+            // echo "is ".$imgPath." file";
+            $bool = in_array($imgPath, $mediasFolderContent);
+            // print_r($bool);
+            if(in_array($imgPath, $mediasFolderContent)){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
+            else {
+                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+                echo "<div><p><a href='index.php?file=".$value."'>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            }
+            
+        }
     }
 }
 
