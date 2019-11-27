@@ -1,0 +1,15 @@
+/* sacha */
+
+div.col-8 div{
+    display: flex;
+    width: 120px;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-right: 25px;
+}
+
+
+div.col-8 div p{
+    font-size: 12px;
+}
