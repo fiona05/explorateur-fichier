@@ -45,7 +45,7 @@ function init_base_list($dir = "."){
         if (in_array($value, array(".", ".."))){
             continue;
         }
-        elseif(is_dir($value) || $fileExtention == ""){
+        elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
@@ -95,7 +95,7 @@ function list_file($dir = "."){
         if (in_array($value, array(".", ".."))){
             continue;
         }
-        elseif(is_dir($value) || $fileExtention == ""){
+        elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
