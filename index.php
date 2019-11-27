@@ -49,27 +49,27 @@ function init_base_list($dir = "."){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            <img src='medias/txt-file.png' alt='txt file logo' class='icon-size'></p><p>".$value."</p></a>";
             
         }
         elseif($fileExtention == "php"){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
             echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            <img src='medias/php-file.png' alt='php file logo' class='icon-size'></p><p>".$value."</p></a>";
         }
         elseif(is_dir($value) || $fileExtention == ""){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
         echo "<p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a>";
         }
         else {
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+                <img src='medias/basic-file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
     }
 }
@@ -96,27 +96,27 @@ function list_file($dir = "."){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+            <img src='medias/txt-file.png' alt='txt file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             
         }
         elseif($fileExtention == "php"){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+            <img src='medias/php-file.png' alt='php file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
         elseif(is_dir($value) || $fileExtention == ""){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
         echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
         else {
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+                <img src='medias/basic-file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
     }
 }
