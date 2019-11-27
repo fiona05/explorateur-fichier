@@ -184,7 +184,7 @@ function list_file($dir = "."){
                     <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
                         <?php init_base_list(); ?>
                     </div>
-                    <div class="col-8 d-flex justify-content-between flex-wrap">   <!--TROUVER UN BACKGROUND -->
+                    <div class="col-8 d-flex flex-wrap">   <!--TROUVER UN BACKGROUND -->
                         <?php list_file($currentDir); ?>
                     </div>
                 </div>
