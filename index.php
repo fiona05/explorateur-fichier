@@ -95,22 +95,22 @@ function list_file($dir = "."){
         elseif($fileExtention == "txt"){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            echo "<div><p><a href='index.php?file=".$value."'>
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
             
         }
         elseif($fileExtention == "php"){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+            echo "<div><p><a href='index.php?file=".$value."'>
+            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
         }
         elseif(is_dir($value) || $fileExtention == ""){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         print_r($currentDirPath);
-        echo "<p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
         }
         else {
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
@@ -173,7 +173,12 @@ function list_file($dir = "."){
        <div class="conyainer-fluid">
            <div class="container">
                 <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p> 
+                    <div class="col-10">
+                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
+                    </div> 
+                    <div class="col-2">
+                        <!-- <p class="text-uppercase font-weight-bold"><a href=""><=Retour></a></p> -->
+                    </div> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
                     <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
