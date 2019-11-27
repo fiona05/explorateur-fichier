@@ -1,13 +1,6 @@
 <?php
 header('Content-Type: text/html; charset=utf-8');/*Encodage*/
 
-/*
-Programme par : kiki67100
-le mardi 27 novembre 2007
-
-Navigateur de fichier permet de crée , supprimmer , lister les fichier présent sur un serveur
-*/
-
 if(!@include('fonction.php')){
 echo '<div style="position:absolute; top:45%; left:40%; color:red;">Impossible d\'inclure fonction.php ...</div>';
 exit;
@@ -26,7 +19,7 @@ if(!isset($_GET['rename'])&&!isset($_GET['pathren'])&&!isset($_GET['en'])&&!isse
 !isset($_GET['delete'])&&!isset($_GET['path'])&&!isset($_GET['dir'])&&!isset($_FILES['fichier'])&&!isset($_GET['mkdir'])&&!isset
 ($_GET['pathmkdir']))
 {
-	header('location:?dir='.$DEFAULT);à)
+	header('location:?dir='.$DEFAULT);
 }
 
 if(isset($_GET['upload'])&&isset($_POST)&&!file_exists($_POST['pathupload'].$_FILES['fichier']['name']))
@@ -61,7 +54,7 @@ if(isset($_GET['touch'])&&!empty($_GET['touch'])&&isset($_GET['path'])&&!empty($
 	Erreur('Un fichier porte deja le nom : '.$_GET['touch'].' !');
 	exit;
  }
- 
+ /*sinon erreur*/
  if(!@touch($_GET['path'].'/'.$_GET['touch']))
  {
      Erreur('Erreur l\'ors de la creation du fichier '.$_GET['touch'].'');
@@ -150,7 +143,7 @@ if(!$handle)
 <script language="javascript" type="text/javascript" src="file/javascript.js"></script> 
 </head>
 <body>
-<div class="opensrc"><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Opensource.svg/288px-Opensource.svg.png" /></div>
+
 <div style="float:right">
 <a href="#" onclick="display_('touch');"><img title="Cree un fichier"  title="Cree un fichier" src="<?php echo $IMGCREATEFILE; ?>" /></a><br />
 <a href="#" onclick="display_('upload');"><img title="Telecharger un fichier"  title="Telecharger un fichier" src="<?php echo $IMGUPLOAD; ?>" /></a><br />
