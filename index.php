@@ -173,7 +173,7 @@ function list_file($dir = "."){
         <div class="container-fluid"> <!--TROUVER UN BACKGROUND -->
             <div class="container"> <!--TROUVER UN BACKGROUND -->
                 <div class="row flex-column justify-content-start">
-                    <p><img src="" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
+                    <p><img src="img/avatar-icon.png" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
                     <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
                 </div>
             </div>
@@ -181,9 +181,9 @@ function list_file($dir = "."){
     </header>
 
     <main>
-       <div class="conyainer-fluid">
-           <div class="container">
-                <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
+       <div class="container-fluid gris  ">
+           <div class="">
+                <div class="row bordure-bottom">  <!--TROUVER UN BACKGROUND COULEUR-->
                     <div class="col-10">
                     <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
                     </div> 
@@ -192,7 +192,7 @@ function list_file($dir = "."){
                     </div> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-4 bordure-right">   <!--TROUVER UN BACKGROUND COULEUR-->
                         <?php init_base_list(); ?>
                     </div>
                     <div class="col-8 d-flex flex-wrap">   <!--TROUVER UN BACKGROUND -->

@@ -1,3 +1,24 @@
+
+/* franck */
+
+header{
+background: #008080;
+
+}
+
+.gris{
+background:#gi8080808c;
+}
+
+.bordure-right{
+border-right:1px solid black;
+
+}
+
+.bordure-bottom{
+    border-bottom:1px solid rgba(0, 0, 0, 0.479);
+}
+
 /* sacha */
 
 div.col-8 div{
@@ -18,3 +39,4 @@ div.col-8 div p{
 .icon-size{
     width: 40px;
 }
+
