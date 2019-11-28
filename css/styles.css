@@ -7,10 +7,36 @@ background: #008080;
 }
 
 .gris{
-background:#8080808c;
+background:#gi8080808c;
+}
+
+.bordure-right{
+border-right:1px solid black;
+
+}
+
+.bordure-bottom{
+    border-bottom:1px solid rgba(0, 0, 0, 0.479);
+}
+
+/* sacha */
+
+div.col-8 div{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-right: 25px;
 }
 
 
+div.col-8 div p{
+    font-size: 12px;
+    text-align: center;
+}
 
+.icon-size{
+    width: 40px;
+}
 
-/* sacha */

@@ -1,7 +1,12 @@
 <?php
 
+if(isset($_GET["file"])){
 //pareil que le split de javascript (je l'utilise dans de if en dessous pour vérif si il y a des ".." dans url)
 $pathArray = explode("/", $_GET["file"]);
+}
+else{
+    $_GET["file"] = ".";
+}
 // print_r($_GET["file"]);
 // print_r($pathArray);
 if(!$_GET["file"] || $_GET["file"] == ".." || in_array("..", $pathArray)){
@@ -45,32 +50,34 @@ function init_base_list($dir = "."){
         if (in_array($value, array(".", ".."))){
             continue;
         }
-        elseif($fileExtention == "txt"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 50px;'></p><p>".$value."</p></a>";
-            
-        }
-        elseif($fileExtention == "php"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 50px;'></p><p>".$value."</p></a>";
-        }
-        elseif(is_dir($value) || $fileExtention == ""){
+        elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        print_r($currentDirPath);
-        echo "<p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 50px;'></p><p>".$value."</p></a>";
+        // print_r($currentDirPath);
+        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
-        else {
+        else{
+            $mediasFolderContent = scandir("medias");
+            // print_r($mediasFolderContent);
+            $imgPath = $fileExtention."-file.png";
+            // echo "is ".$imgPath." file";
+            $bool = in_array($imgPath, $mediasFolderContent);
+            // print_r($bool);
+            if(in_array($imgPath, $mediasFolderContent)){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
+            else {
+                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+                echo "<div><p><a href='index.php?file=".$value."'>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            }
+            
+        }
     }
 }
 
@@ -87,37 +94,40 @@ function list_file($dir = "."){
     foreach($dir_contents as $value){
         $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
         // var_dump($fileExtention);
-        // var_dump(is_dir($value));
+        // var_dump($value);
+        // var_dump(is_file($value));
 
         if (in_array($value, array(".", ".."))){
             continue;
         }
-        elseif($fileExtention == "txt"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p><p>".$value."</p></a>";
-            
-        }
-        elseif($fileExtention == "php"){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p>";*/
-            echo "<p><a href='index.php?file=".$value."'>
-            <img src='medias/php-file.png' alt='php file logo' style='width : 20px;'></p><p>".$value."</p></a>";
-        }
-        elseif(is_dir($value) || $fileExtention == ""){
+        elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        print_r($currentDirPath);
-        echo "<p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a>";
+        // print_r($currentDirPath);
+        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
-        else {
+        else{
+            $mediasFolderContent = scandir("medias");
+            // print_r($mediasFolderContent);
+            $imgPath = $fileExtention."-file.png";
+            // echo "is ".$imgPath." file";
+            $bool = in_array($imgPath, $mediasFolderContent);
+            // print_r($bool);
+            if(in_array($imgPath, $mediasFolderContent)){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
             echo "<div><p><a href='index.php?file=".$value."'>
-                <img src='medias/basic-file-icon.png' alt='folder file logo' style='width : 20px;'></p><p>".$value."</p></a></div>";
+            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
             }
+            else {
+                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
+                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+                echo "<div><p><a href='index.php?file=".$value."'>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            }
+            
+        }
     }
 }
 
@@ -171,15 +181,20 @@ function list_file($dir = "."){
 
     <main>
        <div class="container-fluid gris  ">
-           <div class="container ">
-                <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p> 
+           <div class="">
+                <div class="row bordure-bottom">  <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-10">
+                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
+                    </div> 
+                    <div class="col-2">
+                        <!-- <p class="text-uppercase font-weight-bold"><a href=""><=Retour></a></p> -->
+                    </div> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-4 bordure-right">   <!--TROUVER UN BACKGROUND COULEUR-->
                         <?php init_base_list(); ?>
                     </div>
-                    <div class="col-8 d-flex justify-content-between flex-wrap">   <!--TROUVER UN BACKGROUND -->
+                    <div class="col-8 d-flex flex-wrap">   <!--TROUVER UN BACKGROUND -->
                         <?php list_file($currentDir); ?>
                     </div>
                 </div>
