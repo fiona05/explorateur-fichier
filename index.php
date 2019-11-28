@@ -5,6 +5,7 @@ if(isset($_GET["file"])){
 $pathArray = explode("/", $_GET["file"]);
 }
 else{
+    $pathArray = array(".");
     $_GET["file"] = ".";
 }
 // print_r($_GET["file"]);
