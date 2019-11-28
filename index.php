@@ -1,7 +1,12 @@
 <?php
 
+if(isset($_GET["file"])){
 //pareil que le split de javascript (je l'utilise dans de if en dessous pour vérif si il y a des ".." dans url)
 $pathArray = explode("/", $_GET["file"]);
+}
+else{
+    $_GET["file"] = ".";
+}
 // print_r($_GET["file"]);
 // print_r($pathArray);
 if(!$_GET["file"] || $_GET["file"] == ".." || in_array("..", $pathArray)){
@@ -48,7 +53,7 @@ function init_base_list($dir = "."){
         elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        print_r($currentDirPath);
+        // print_r($currentDirPath);
         echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
             <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
@@ -98,7 +103,7 @@ function list_file($dir = "."){
         elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        print_r($currentDirPath);
+        // print_r($currentDirPath);
         echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
             <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
         }
