@@ -15,6 +15,27 @@ else{
 }
 // print_r($_GET["file"]);
 // print_r($pathArray);
+// $fileIndex = count($pathArray);
+// var_dump($pathArray[count($pathArray)-1]);
+// var_dump(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION));
+
+
+function downloadFile($pathArray){
+    if(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION) != ""){
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($pathArray[count($pathArray)-1]).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($pathArray[count($pathArray)-1]));
+        readfile($pathArray[count($pathArray)-1]);
+        exit;
+    }
+}
+//section qui vérife si le dernier element cliqué est un fichier
+//si oui => propose de télécharger le fichier en question
+downloadFile($pathArray);
 
 //section qui reverifie si $_GET["file"] est vide ou s'il contient un ".."
 //si c'est le premiere cas de figure, associe $currentDir à "." 
@@ -66,7 +87,7 @@ function list_file($dir = "."){
         elseif(is_dir($current_dir_location."/".$value) && $value == ".."){
             
             echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/house-icon.png' alt='home logo' class='icon-size'></p>
+            <img src='medias/house-icon.png' alt='home logo' class='home-icon-size'></p>
             <p class='folder-name'>Home</p></a></div>";
 
         }
@@ -86,14 +107,14 @@ function list_file($dir = "."){
             // print_r($bool);
             if(in_array($imgPath, $mediasFolderContent)){
                 
-                echo "<div class='fade-anim'><p><a href=''>
+                echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
                 <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p>
                 <p class='file-name'>".$value."</p></a></div>";
 
             }
             else {
                 
-                echo "<div class='fade-anim'><p><a href=''>
+                echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
                     <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p>
                     <p class='file-name'>".$value."</p></a></div>";
             }
