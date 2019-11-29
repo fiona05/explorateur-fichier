@@ -5,7 +5,6 @@ if(!@include('fonction.php')){
 echo '<div style="position:absolute; top:45%; left:40%; color:red;">Impossible d\'inclure fonction.php ...</div>';
 exit;
 }
-
 $DEFAULT=$_SERVER['DOCUMENT_ROOT']; /*Default redirection quand le script commence*/
 $IMGFOLDER='img/file.png'; /*L'icon pour le dossier*/
 $IMGFILE='img/fichier.gif'; /*Icon pour le fichier*/
@@ -144,12 +143,12 @@ if(!$handle)
 </head>
 <body>
 
-<div style="float:right">
+<!-- <div style="float:right">
 <a href="#" onclick="display_('touch');"><img title="Cree un fichier"  title="Cree un fichier" src="<?php echo $IMGCREATEFILE; ?>" /></a><br />
 <a href="#" onclick="display_('upload');"><img title="Telecharger un fichier"  title="Telecharger un fichier" src="<?php echo $IMGUPLOAD; ?>" /></a><br />
 <a href="#" onclick="display_('mkdir');"><img title="Cree un dossier"  title="Cree un dossier" src="<?php echo $IMGCREATEFOLDER; ?>" /></a><br />
 <a href="#" onclick="display_('search');"><img title="Chercher"  title="Chercher" src="<?php echo $IMGSEARCH; ?>" /></a></span><br />
-<a href="#" onclick="display_('rename');"><img title="Renommer"  title="Renommer" src="<?php echo $IMGRENAME; ?>" /></a></span><br />
+<a href="#" onclick="display_('rename');"><img title="Renommer"  title="Renommer" src="<?php echo $IMGRENAME; ?>" /></a></span><br /> -->
 
 </div>
 </body>
@@ -182,32 +181,32 @@ echo '</div>'."\n"; /*ferme la div pour la couleur.*/
 }
 
 /*Formulaire Pour crée un fichier */
-echo '<div class="bulle" id="touch" style="display:none;"><form method="get" action="?" >
-<img src="'.$IMGFILE.'"></img><input type="text" name="touch"  title="Fichier a cree" size="30" />
-<input type="hidden" name="path" value="'.$replien.'" />
-</form></div>';
+// echo '<div class="bulle" id="touch" style="display:none;"><form method="get" action="?" >
+// <img src="'.$IMGFILE.'"></img><input type="text" name="touch"  title="Fichier a cree" size="30" />
+// <input type="hidden" name="path" value="'.$replien.'" />
+// </form></div>';
 
-/*Formulaire pour upload un fichier*/
-echo '<div class="bulle" id="upload" style="display:none;">
-<form method="post" enctype="multipart/form-data" action="?upload">
-<input type="file" name="fichier" size="25">
-<input type="submit" name="upload" value="Go">
-<input type="hidden" name="pathupload" value="'.$replien.'" />
-</form></div>';
+// /*Formulaire pour upload un fichier*/
+// echo '<div class="bulle" id="upload" style="display:none;">
+// <form method="post" enctype="multipart/form-data" action="?upload">
+// <input type="file" name="fichier" size="25">
+// <input type="submit" name="upload" value="Go">
+// <input type="hidden" name="pathupload" value="'.$replien.'" />
+// </form></div>';
 
-/*Formulaire pour crée un dossier :)*/
+// /*Formulaire pour crée un dossier :)*/
 
-echo '<div class="bulle" id="mkdir" style="display:none;"><form method="get" action="?" >
-<img src="'.$IMGFOLDER.'" ></img><input type="text" name="mkdir"  title="Cree dossier" size="30" />
-<input type="hidden" name="pathmkdir" value="'.$replien.'" />
-</form></div>';
+// echo '<div class="bulle" id="mkdir" style="display:none;"><form method="get" action="?" >
+// <img src="'.$IMGFOLDER.'" ></img><input type="text" name="mkdir"  title="Cree dossier" size="30" />
+// <input type="hidden" name="pathmkdir" value="'.$replien.'" />
+// </form></div>';
 
-/*renommer*/
+// /*renommer*/
 
-echo '<div class="bulle" id="rename" style="display:none;"><form method="get" action="?" >
-<img src="'.$IMGRENAME.'"></img><input type="text" name="rename"  title="Renommer ?" size="10" /> en <input type="text" name="en"  title="en" size="10" /><input type="submit" value="go" />
-<input type="hidden" name="pathren" value="'.$replien.'" />
-</form></div>';
+// echo '<div class="bulle" id="rename" style="display:none;"><form method="get" action="?" >
+// <img src="'.$IMGRENAME.'"></img><input type="text" name="rename"  title="Renommer ?" size="10" /> en <input type="text" name="en"  title="en" size="10" /><input type="submit" value="go" />
+// <input type="hidden" name="pathren" value="'.$replien.'" />
+// </form></div>';
 
 echo '<div class="bulle" id="search" style="display:none;">
 <img src='.$IMGSEARCH.'></img><input type="text" size="20" id="larecherche"/><br><div id="recherche"></div></div>

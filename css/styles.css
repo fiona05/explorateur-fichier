@@ -1,0 +1,60 @@
+
+/* franck */
+
+header{
+background: #005780;
+
+}
+
+
+.bordure-right{
+border-right:1px solid black;
+}
+
+
+.fond1{
+    background:#b6b4b4;  
+}
+
+.fond2{
+    background:#e9e5e5bf;  
+}
+
+.fond3{
+    background:white;  
+}
+
+.color-text{
+color: white;
+}
+
+.bordure-bottom{
+    border-bottom:1px solid rgba(0, 0, 0, 0.479);
+}
+
+
+
+
+
+
+/* sacha */
+
+div.col-8 div{
+    display: flex;
+    width: 150px;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-right: 25px;
+}
+
+
+div.col-8 div p{
+    font-size: 12px;
+    text-align: center;
+}
+
+.icon-size{
+    width: 40px;
+}
+
