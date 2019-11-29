@@ -193,6 +193,7 @@ function list_file($dir = "."){
 
     <main>
        <div class="container-fluid">
+           
            <div class="">
                 <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
                     <div class="col-12">
@@ -209,6 +210,43 @@ function list_file($dir = "."){
             </div>
         </div>
     </main>
+    <div style="float-right">
+        <a href="#" onclick="display_('search');"><img title="Chercher"  title="Chercher" src="<?php echo $IMGSEARCH; ?>" /></a></span><br />    
+        </div>
+        <?php
+
+while ($f = readdir($handle)) { //Boucle qui enumere tout les fichier d'un repertoire
+$lien=str_replace(" ",'%20',$f); /*Pour les espace fichier*/
+$replien=str_replace(" ",'%20',$rep);/*idem pour les dossier*/
+     
+/*Pour la couleur du background ......................................*/
+if($i==0){  echo '<div class="color1">'; 
+$i=1;
+}else{ echo '<div class="color2">';
+$i=0;
+}
+/*Fin de la couleur ..................................*/
+	 
+if(@is_dir($rep.'/'.$f)){ /*verifie si c'est un repertoire*/
+	  
+     echo '<a href="?dir='.$replien.'/'.$lien.'"><img alt="Dossier" src="'.$IMGFOLDER.'" />'.$f.'</a><br />'; 
+   
+}elseif(@is_file($rep.'/'.$f)){/*Verifie si c'est bien un fichier*/
+   
+	  echo '<img src="'.$IMGFILE.'" alt="Fichier"/>'.$f.'<a href="?delete='.$replien.'/'.$lien.'" onclick="return confirm(\'Supprimer '.$f.' ?\');"><img alt="Supprimmer" title="/!\Supprimer/!\ " src="img/delete.gif" /></a><a href="?download='.$replien.'/'.$lien.'" ><img alt="Telecharger" title="Telecharger " src="img/download.png" /></a><br />';
+}
+echo '</div>'."\n"; /*ferme la div pour la couleur.*/
+/*Crée le formulaire pour crée un fichier par default display:none affiche en cliquant en  haut*/
+
+}
+/*recherche*/
+echo '<div class="bulle" id="search" style="display:none;">
+<img src='.$IMGSEARCH.'></img><input type="text" size="20" id="larecherche"/><br><div id="recherche"></div></div>
+';
+
+/*Debut du telechargement*/
+
+?>
     
     <!-- <script src="file/javascript.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
