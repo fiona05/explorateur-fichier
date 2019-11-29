@@ -1,8 +1,13 @@
 <?php
 
+//section qui verifie si $_GET["file"] contient l'info du dossier qui a été cliqué
+//si il a quelque chose, il associe $pathArray avec le nom du dossier clicqué avec un "/"
+//s'il est vide, il fait en sorte que $_GET["file"] ai au moins "." dedans
 if(isset($_GET["file"])){
-//pareil que le split de javascript (je l'utilise dans de if en dessous pour vérif si il y a des ".." dans url)
-$pathArray = explode("/", $_GET["file"]);
+    
+    $pathArray = explode("/", $_GET["file"]);
+    //ex :$pathArray peut etre un tableau avec : "Array ( [0] => . [1] => medias [2] => dossier-coucou )" dedans
+    //ci $_GET["file"] contient "./medias/dossier-coucou"
 }
 else{
     $pathArray = array(".");
@@ -10,77 +15,28 @@ else{
 }
 // print_r($_GET["file"]);
 // print_r($pathArray);
+
+//section qui reverifie si $_GET["file"] est vide ou s'il contient un ".."
+//si c'est le premiere cas de figure, associe $currentDir à "." 
+//(mis en place pour éviter que quelqu'un retourne trop en arrière en terme de dossiers avec des "..")
+//sinon, il associe $currentDir à $_GET["file"] (ex:"./medias/dossier-coucou") et $currentDirPath à d'adresse complète
+//en utilisant "getcwd()" (ce qui donne le dossier actif en cours)
 if(!$_GET["file"] || $_GET["file"] == ".." || in_array("..", $pathArray)){
-    // echo "it's empty"."<br>";
+    
     $currentDir = ".";
-    // echo getcwd()."/".$currentDir;
+    
     $currentDirPath = getcwd()."/".$currentDir;
     // header("Location: http://localhost:8080/");
     // exit;
 }
 else{
-    // echo "it contains : ".$_GET["file"]."<br>";
-    // foreach($_GET["file"])
+    // ex : $currentDir = "./medias/dossier-coucou"
     $currentDir = $_GET["file"];
-    // echo getcwd()."/".$currentDir;
+    // ex : $currentDirPath = "var/www/html" + "/" + "./medias/dossier-coucou"
     $currentDirPath = getcwd()."/".$currentDir;
+
 }
 
-// print_r($currentDir."/");
-// echo "<br>";
-//thought i could use line below to check if user tried to type and go back in the url
-//it would check if current url destination had "html" file for example and would change it back to root "."
-// var_dump(file_exists($currentDir."/html"));
-// .$currentDir."/"
-
-
-function init_base_list($dir = "."){
-    $current_dir_location = $dir;
-    // print_r($current_dir_location);
-    // echo 'Voici quelques informations de débogage :';
-    $dir_contents = scandir($current_dir_location);
-    // print_r($dir_contents);
-    // print_r(error_get_last());
-    // var_dump($current_dir_location);
-
-    foreach($dir_contents as $value){
-        $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
-        // var_dump($fileExtention);
-        // var_dump(is_dir($value));
-
-        if (in_array($value, array(".", ".."))){
-            continue;
-        }
-        elseif(is_dir($current_dir_location."/".$value)){
-        /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-        <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        // print_r($currentDirPath);
-        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
-        }
-        else{
-            $mediasFolderContent = scandir("medias");
-            // print_r($mediasFolderContent);
-            $imgPath = $fileExtention."-file.png";
-            // echo "is ".$imgPath." file";
-            $bool = in_array($imgPath, $mediasFolderContent);
-            // print_r($bool);
-            if(in_array($imgPath, $mediasFolderContent)){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
-            }
-            else {
-                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-                echo "<div><p><a href='index.php?file=".$value."'>
-                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
-            }
-            
-        }
-    }
-}
 
 
 function list_file($dir = "."){
@@ -99,15 +55,27 @@ function list_file($dir = "."){
         // var_dump(is_file($value));
 
         if (in_array($value, array(".", "..")) && in_array("index.php", $dir_contents)){
+
             continue;
         }
+        elseif(is_dir($current_dir_location."/".$value) && $value == "."){
+            
+            continue;
+
+        }
+        elseif(is_dir($current_dir_location."/".$value) && $value == ".."){
+            
+            echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/house-icon.png' alt='home logo' class='icon-size'></p>
+            <p class='folder-name'>Home</p></a></div>";
+
+        }
         elseif(is_dir($current_dir_location."/".$value)){
-        /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-        <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-        // print_r($currentDirPath);
-        echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            
+            echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
             <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p>
             <p class='folder-name'>".$value."</p></a></div>";
+
         }
         else{
             $mediasFolderContent = scandir("medias");
@@ -117,15 +85,14 @@ function list_file($dir = "."){
             $bool = in_array($imgPath, $mediasFolderContent);
             // print_r($bool);
             if(in_array($imgPath, $mediasFolderContent)){
-            /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-            <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<div class='fade-anim'><p><a href=''>
-            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p>
-            <p class='file-name'>".$value."</p></a></div>";
+                
+                echo "<div class='fade-anim'><p><a href=''>
+                <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p>
+                <p class='file-name'>".$value."</p></a></div>";
+
             }
             else {
-                /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
-                <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
+                
                 echo "<div class='fade-anim'><p><a href=''>
                     <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p>
                     <p class='file-name'>".$value."</p></a></div>";
