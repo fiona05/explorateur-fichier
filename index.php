@@ -98,15 +98,16 @@ function list_file($dir = "."){
         // var_dump($value);
         // var_dump(is_file($value));
 
-        if (in_array($value, array(".", ".."))){
+        if (in_array($value, array(".", "..")) && in_array("index.php", $dir_contents)){
             continue;
         }
         elseif(is_dir($current_dir_location."/".$value)){
         /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
         <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
         // print_r($currentDirPath);
-        echo "<div><p><a href='index.php?file=".$current_dir_location."/".$value."'>
-            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+        echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p>
+            <p class='folder-name'>".$value."</p></a></div>";
         }
         else{
             $mediasFolderContent = scandir("medias");
@@ -118,14 +119,16 @@ function list_file($dir = "."){
             if(in_array($imgPath, $mediasFolderContent)){
             /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
             <img src='medias/txt-file.png' alt='txt file logo' style='width : 20px;'></p>";*/
-            echo "<div><p><a href='index.php?file=".$value."'>
-            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+            echo "<div class='fade-anim'><p><a href=''>
+            <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p>
+            <p class='file-name'>".$value."</p></a></div>";
             }
             else {
                 /*echo "<p><a href='index.php?file=".$value."'>".$value."</a>
                 <img src='medias/file-icon.png' alt='folder file logo' style='width : 20px;'></p>";*/
-                echo "<div><p><a href='index.php?file=".$value."'>
-                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p><p>".$value."</p></a></div>";
+                echo "<div class='fade-anim'><p><a href=''>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p>
+                    <p class='file-name'>".$value."</p></a></div>";
             }
             
         }
@@ -170,32 +173,29 @@ function list_file($dir = "."){
 
 <body>
     <header>
-        <div class="container-fluid"> <!--TROUVER UN BACKGROUND -->
-            <div class="container"> <!--TROUVER UN BACKGROUND -->
+        <div class="container-fluid header-bg-color header-bg-color"> <!--TROUVER UN BACKGROUND -->
+        
                 <div class="row flex-column justify-content-start">
-                    <p><img src="img/avatar-icon.png" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
-                    <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
+                    <div class="col-12 d-flex pt-4 pb-4">
+                        <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
+                        <p class="avatar"><img src="img/avatar-icon.png" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
+                    </div>
                 </div>
-            </div>
+                
         </div>
     </header>
 
     <main>
-       <div class="container-fluid gris  ">
+       <div class="container-fluid">
            <div class="">
-                <div class="row bordure-bottom">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <div class="col-10">
+                <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-12">
                     <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
                     </div> 
-                    <div class="col-2">
-                        <!-- <p class="text-uppercase font-weight-bold"><a href=""><=Retour></a></p> -->
-                    </div> 
                 </div>
-                <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4 bordure-right">   <!--TROUVER UN BACKGROUND COULEUR-->
-                        <?php init_base_list(); ?>
-                    </div>
-                    <div class="col-8 d-flex flex-wrap">   <!--TROUVER UN BACKGROUND -->
+                <div class="row"> 
+                
+                    <div class="col-12 d-flex flex-wrap pt-5 pb-5 main-bg-color">   <!--TROUVER UN BACKGROUND -->
                         <?php list_file($currentDir); ?>
                     </div>
                 </div>
