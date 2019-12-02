@@ -45,18 +45,18 @@
     </header>
 
     <main>
-       <div class="conyainer-fluid">
+       <div class="conyainer-fluid"> 
            <div class="container">
                 <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold">fichiers:</p> 
+                    <p class="text-uppercase font-weight-bold" name="access">fichiers:</p> 
                 </div>
                 <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4">   <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-4" name="folder">   <!--TROUVER UN BACKGROUND COULEUR-->
+                    <?php include "php/test.php"; ?>
                     </div>
-                    <div class="col-8">   <!--TROUVER UN BACKGROUND -->
+                    <div class="col-8"name="file">   <!--TROUVER UN BACKGROUND -->
                     </div>
                 </div>
-
             </div>
         </div>
     </main>
