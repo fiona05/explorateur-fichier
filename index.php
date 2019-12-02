@@ -1,3 +1,130 @@
+<?php
+
+//section qui verifie si $_GET["file"] contient l'info du dossier qui a été cliqué
+//si il a quelque chose, il associe $pathArray avec le nom du dossier clicqué avec un "/"
+//s'il est vide, il fait en sorte que $_GET["file"] ai au moins "." dedans
+if(isset($_GET["file"])){
+    
+    $pathArray = explode("/", $_GET["file"]);
+    //ex :$pathArray peut etre un tableau avec : "Array ( [0] => . [1] => medias [2] => dossier-coucou )" dedans
+    //ci $_GET["file"] contient "./medias/dossier-coucou"
+}
+else{
+    $pathArray = array(".");
+    $_GET["file"] = ".";
+}
+// print_r($_GET["file"]);
+// print_r($pathArray);
+// $fileIndex = count($pathArray);
+// var_dump($pathArray[count($pathArray)-1]);
+// var_dump(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION));
+
+
+function downloadFile($pathArray){
+    if(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION) != ""){
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($pathArray[count($pathArray)-1]).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($pathArray[count($pathArray)-1]));
+        readfile($pathArray[count($pathArray)-1]);
+        exit;
+    }
+}
+//section qui vérife si le dernier element cliqué est un fichier
+//si oui => propose de télécharger le fichier en question
+downloadFile($pathArray);
+
+//section qui reverifie si $_GET["file"] est vide ou s'il contient un ".."
+//si c'est le premiere cas de figure, associe $currentDir à "." 
+//(mis en place pour éviter que quelqu'un retourne trop en arrière en terme de dossiers avec des "..")
+//sinon, il associe $currentDir à $_GET["file"] (ex:"./medias/dossier-coucou") et $currentDirPath à d'adresse complète
+//en utilisant "getcwd()" (ce qui donne le dossier actif en cours)
+if(!$_GET["file"] || $_GET["file"] == ".." || in_array("..", $pathArray)){
+    
+    $currentDir = ".";
+    
+    $currentDirPath = getcwd()."/".$currentDir;
+    // header("Location: http://localhost:8080/");
+    // exit;
+}
+else{
+    // ex : $currentDir = "./medias/dossier-coucou"
+    $currentDir = $_GET["file"];
+    // ex : $currentDirPath = "var/www/html" + "/" + "./medias/dossier-coucou"
+    $currentDirPath = getcwd()."/".$currentDir;
+
+}
+
+
+
+function list_file($dir = "."){
+    $current_dir_location = $dir;
+    // print_r($current_dir_location);
+    // echo 'Voici quelques informations de débogage :';
+    $dir_contents = scandir($current_dir_location);
+    // print_r($dir_contents);
+    // print_r(error_get_last());
+    // var_dump($current_dir_location);
+
+    foreach($dir_contents as $value){
+        $fileExtention = pathinfo($value, PATHINFO_EXTENSION);
+        // var_dump($fileExtention);
+        // var_dump($value);
+        // var_dump(is_file($value));
+
+        if (in_array($value, array(".", "..")) && in_array("index.php", $dir_contents)){
+
+            continue;
+        }
+        elseif(is_dir($current_dir_location."/".$value) && $value == "."){
+            
+            continue;
+
+        }
+        elseif(is_dir($current_dir_location."/".$value) && $value == ".."){
+            
+            echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/house-icon.png' alt='home logo' class='home-icon-size'></p>
+            <p class='folder-name'>Home</p></a></div>";
+
+        }
+        elseif(is_dir($current_dir_location."/".$value)){
+            
+            echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+            <img src='medias/file-icon.png' alt='folder file logo' class='icon-size'></p>
+            <p class='folder-name'>".$value."</p></a></div>";
+
+        }
+        else{
+            $mediasFolderContent = scandir("medias");
+            // print_r($mediasFolderContent);
+            $imgPath = $fileExtention."-file.png";
+            // echo "is ".$imgPath." file";
+            $bool = in_array($imgPath, $mediasFolderContent);
+            // print_r($bool);
+            if(in_array($imgPath, $mediasFolderContent)){
+                
+                echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+                <img src='medias/".$fileExtention."-file.png' alt='".$fileExtention." file logo' class='icon-size'></p>
+                <p class='file-name'>".$value."</p></a></div>";
+
+            }
+            else {
+                
+                echo "<div class='fade-anim'><p><a href='index.php?file=".$current_dir_location."/".$value."'>
+                    <img src='medias/basic-file-icon.png' alt='default file logo' class='icon-size'></p>
+                    <p class='file-name'>".$value."</p></a></div>";
+            }
+            
+        }
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,27 +161,30 @@
 
 <body>
     <header>
-        <div class="container-fluid"> <!--TROUVER UN BACKGROUND -->
-            <div class="container"> <!--TROUVER UN BACKGROUND -->
+        <div class="container-fluid header-bg-color header-bg-color"> <!--TROUVER UN BACKGROUND -->
+        
                 <div class="row flex-column justify-content-start">
-                    <p><img src="" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
-                    <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
+                    <div class="col-12 d-flex pt-4 pb-4">
+                        <h1>Mister John Doe</h1> <!--TROUVER UNE BELLE FONT/POLICE-->
+                        <p class="avatar"><img src="img/avatar-icon.png" alt="avatar-icon" width="" height=""></p> <!--TROUVER UN AVATAR-->
+                    </div>
                 </div>
-            </div>
+                
         </div>
     </header>
 
     <main>
-       <div class="conyainer-fluid"> 
-           <div class="container">
-                <div class="row">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <p class="text-uppercase font-weight-bold" name="access">fichiers:</p> 
+       <div class="container-fluid">
+           <div class="">
+                <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
+                    <div class="col-12">
+                    <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
+                    </div> 
                 </div>
-                <div class="row">         <!--TROUVER DES ICONS POUR FICHIERS: css, index, media, php, js-->
-                    <div class="col-4" name="folder">   <!--TROUVER UN BACKGROUND COULEUR-->
-                    <?php include "php/test.php"; ?>
-                    </div>
-                    <div class="col-8"name="file">   <!--TROUVER UN BACKGROUND -->
+                <div class="row"> 
+                
+                    <div class="col-12 d-flex flex-wrap pt-5 pb-5 main-bg-color">   <!--TROUVER UN BACKGROUND -->
+                        <?php list_file($currentDir); ?>
                     </div>
                 </div>
             </div>
