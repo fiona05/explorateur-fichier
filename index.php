@@ -165,7 +165,7 @@ function list_file($dir = "."){
 
 <body>
     <header>
-        <div class="container-fluid header-bg-color header-bg-color"> <!--TROUVER UN BACKGROUND -->
+        <div class="container-fluid header-bg-color"> <!--TROUVER UN BACKGROUND -->
         
                 <div class="row flex-column justify-content-start">
                     <div class="col-12 d-flex pt-4 pb-4">
@@ -178,20 +178,16 @@ function list_file($dir = "."){
     </header>
 
     <main>
-       <div class="container-fluid">
-           <div class="">
-                <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
-                    <div class="col-12">
+       <div class="container-fluid main-bg-color">
+            <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
+                <div class="col-12">
                     <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
-                    </div> 
+                </div> 
+            </div>      
+            <div class="row">               
+                <div class="col-12 d-flex flex-wrap pt-5 pb-5 ">   <!--TROUVER UN BACKGROUND -->
+                    <?php list_file($currentDir); ?>
                 </div>
-                <div class="row"> 
-                
-                    <div class="col-12 d-flex flex-wrap pt-5 pb-5 main-bg-color">   <!--TROUVER UN BACKGROUND -->
-                        <?php list_file($currentDir); ?>
-                    </div>
-                </div>
-
             </div>
         </div>
     </main>

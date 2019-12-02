@@ -5,17 +5,21 @@
     
 }
     
-.dark-grey-bg{
+/* .dark-grey-bg{
     background-color: #292929;
         
-}
+} */
     
 .grey-bg{
     background-color: #292929;
 }
 
 .main-bg-color{
-    background-color: #292929;
+    /* background-color: #292929; */
+    background-image: url(../medias/bg-main.jpg);
+    background-size: cover;
+    /* min-height: 1024px; */
+    min-height: 100vh;
 }
 
     
