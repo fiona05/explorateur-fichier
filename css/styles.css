@@ -36,13 +36,14 @@ border-right:1px solid black;
 
 div.col-12 div{
     display: flex;
-    width: 245px;
+    width: 25%;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
     justify-content: flex-end;
     padding-right: 10px;
     padding-left: 10px;
+    padding-bottom: 30px;
 }
 
 
@@ -131,6 +132,11 @@ p, h1, h2{
 
 /*media queries*/
 @media (max-width: 575px){
+    .col-12.d-flex.flex-wrap.pt-5.pb-5.main-bg-color{
+        justify-content: space-between;
+    }
+
+
     div.col-12 div{
         width: 130px;
     }
