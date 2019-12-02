@@ -21,6 +21,9 @@ else{
 
 
 function downloadFile($pathArray){
+    if(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION) == "git"){
+        return;
+    }
     if(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION) != ""){
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
@@ -36,6 +39,7 @@ function downloadFile($pathArray){
 //section qui vérife si le dernier element cliqué est un fichier
 //si oui => propose de télécharger le fichier en question
 downloadFile($pathArray);
+// var_dump(pathinfo($pathArray[count($pathArray)-1], PATHINFO_EXTENSION));
 
 //section qui reverifie si $_GET["file"] est vide ou s'il contient un ".."
 //si c'est le premiere cas de figure, associe $currentDir à "." 
