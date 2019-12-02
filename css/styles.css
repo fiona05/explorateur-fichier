@@ -1,4 +1,11 @@
-/* franck */
+body{
+    /* padding-top: 50px; */
+    background-color: #292929;
+    background-image: url(../medias/bg-main.jpg);
+    background-size: cover;
+    /* min-height: 1024px; */
+    min-height: 100vh;
+}
 
 .header-bg-color{
     background-color: #009fdb;
@@ -22,7 +29,7 @@ border-right:1px solid black;
     border-bottom:1px solid rgba(0, 0, 0, 0.479);
 }
     
-/* sacha */
+
 
 div.col-12 div{
     display: flex;
@@ -56,17 +63,6 @@ p.folder-name{
 
 p.file-name{
     margin-bottom: 20px;
-}
-
-/*section general*/
-
-body{
-    /* padding-top: 50px; */
-    background-color: #292929;
-    background-image: url(../medias/bg-main.jpg);
-    background-size: cover;
-    /* min-height: 1024px; */
-    min-height: 100vh;
 }
 
 p, h1, h2{

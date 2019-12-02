@@ -137,7 +137,7 @@ function list_file($dir = "."){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
         qui composent vos projets; gain de temps, organisation et visibilité garantie!">
-        <meta name="author" content="Fiona PEREIRA GOMES">
+        <meta name="author" content="Fiona PEREIRA GOMES, Sacha HENRY, Fayçal karim, Franck MABIKAS">
         <meta name="category" content="explorateur de fichiers">
         <meta name="Keywords" content="explorateur de fichiers, professionnel, dossiers, fichiers, parcourir, naviguer,
         télécharger, php, js, css, medias, img">
@@ -146,8 +146,8 @@ function list_file($dir = "."){
         <meta property="og:title" content="explorateur de fichiers">
         <meta property="og:description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
         qui composent vos projets; gain de temps, organisation et visibilité garantie!">
-        <meta property="og:image" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/medias/zip-file.png">
-        <meta property="og:url" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/index.php">
+        <meta property="og:image" content="http://fionap.promo-vesoul33.codeur.online/explorer-fichier/medias/zip-file.png">
+        <meta property="og:url" content="http://fionap.promo-vesoul33.codeur.online/explorer-fichier/index.php">
         <meta property="og:image:width" content="495">
         <meta property="og:image:height" content="365">
         <meta property="og:image:alt" content="facebook_partage">
@@ -155,7 +155,7 @@ function list_file($dir = "."){
         <meta name="twitter:title" content="explorateur de fichiers">
         <meta name="twitter:description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
         qui composent vos projets; gain de temps, organisation et visibilité garantie!">
-        <meta name="twitter:image" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/medias/zip-file.png">
+        <meta name="twitter:image" content="http://fionap.promo-vesoul33.codeur.online/explorer-fichier/medias/zip-file.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="https://twitter.com/">
 
