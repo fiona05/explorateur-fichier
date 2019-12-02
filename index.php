@@ -131,23 +131,27 @@ function list_file($dir = "."){
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
+        <meta name="description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
+        qui composent vos projets; gain de temps, organisation et visibilité garantie!">
         <meta name="author" content="Fiona PEREIRA GOMES">
-        <meta name="category" content="">
-        <meta name="Keywords" content="">
+        <meta name="category" content="explorateur de fichiers">
+        <meta name="Keywords" content="explorateur de fichiers, professionnel, dossiers, fichiers, parcourir, naviguer,
+        télécharger, php, js, css, medias, img">
         <!-- Facebook -->
         <meta property="og:locale" content="fr_FR">
-        <meta property="og:title" content="">
-        <meta property="og:description" content="">
-        <meta property="og:image" content="http://fionap.promo-vesoul33.codeur.online/">
-        <meta property="og:url" content="http://fionap.promo-vesoul33.codeur.online/formulaire-php/index.html">
-        <meta property="og:image:width" content="">
-        <meta property="og:image:height" content="">
+        <meta property="og:title" content="explorateur de fichiers">
+        <meta property="og:description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
+        qui composent vos projets; gain de temps, organisation et visibilité garantie!">
+        <meta property="og:image" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/medias/zip-file.png">
+        <meta property="og:url" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/index.php">
+        <meta property="og:image:width" content="495">
+        <meta property="og:image:height" content="365">
         <meta property="og:image:alt" content="facebook_partage">
         <!-- Twitter -->
-        <meta name="twitter:title" content="">
-        <meta name="twitter:description" content="">
-        <meta name="twitter:image" content="http://fionap.promo-vesoul33.codeur.online/">
+        <meta name="twitter:title" content="explorateur de fichiers">
+        <meta name="twitter:description" content="L'explorateur de fichiers professionnels vous permet de naviguer entres tous les dossiers
+        qui composent vos projets; gain de temps, organisation et visibilité garantie!">
+        <meta name="twitter:image" content="http://fionap.promo-vesoul33.codeur.online/explorateur-fichier/medias/zip-file.png">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="https://twitter.com/">
 
@@ -156,7 +160,7 @@ function list_file($dir = "."){
         <!--  css-->
         <link rel="stylesheet" href="css/styles.css">
 
-        <title>explorateur-fichier</title>
+        <title>Explorateur de fichiers</title>
 </head>
 
 <body>
