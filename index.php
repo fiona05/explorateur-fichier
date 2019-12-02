@@ -182,7 +182,7 @@ function list_file($dir = "."){
     </header>
 
     <main>
-       <div class="container-fluid main-bg-color">
+       <div class="container-fluid">
             <div class="row bordure-bottom light-grey-bg">  <!--TROUVER UN BACKGROUND COULEUR-->
                 <div class="col-12">
                     <p class="text-uppercase font-weight-bold">fichiers: <?php echo " ".$currentDirPath."<br>\n"; ?></p>
