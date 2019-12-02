@@ -14,13 +14,8 @@
     background-color: #292929;
 }
 
-.main-bg-color{
-    /* background-color: #292929; */
-    background-image: url(../medias/bg-main.jpg);
-    background-size: cover;
-    /* min-height: 1024px; */
-    min-height: 100vh;
-}
+/* .main-bg-color{
+} */
 
     
 .light-grey-bg{
@@ -77,6 +72,10 @@ p.file-name{
 body{
     /* padding-top: 50px; */
     background-color: #292929;
+    background-image: url(../medias/bg-main.jpg);
+    background-size: cover;
+    /* min-height: 1024px; */
+    min-height: 100vh;
 }
 
 p, h1, h2{
@@ -142,7 +141,7 @@ p, h1, h2{
 
 
     div.col-12 div{
-        width: 130px;
+        width: 50%;
     }
 }
 
